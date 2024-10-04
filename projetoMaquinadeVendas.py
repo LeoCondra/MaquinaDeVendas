@@ -4,13 +4,12 @@ from PIL import Image, ImageTk
 
 class MaquinaDeVendas:
     def __init__(self):
-        self.estado = 's0'  # Estado inicial
+        self.estado = 's0' 
         self.saldo = 0.0
         self.preco_produto = 2.00
         self.troco = 0.0
 
     def inserir_moeda(self, moeda):
-        # Tabela de transição de estados
         transicoes = {
             's0': {'m25': ('s1', 0.25), 'm50': ('s2', 0.50), 'm100': ('s4', 1.00)},
             's1': {'m25': ('s2', 0.25), 'm50': ('s3', 0.50), 'm100': ('s5', 1.00)},
@@ -20,10 +19,8 @@ class MaquinaDeVendas:
             's5': {'m25': ('s6', 0.25), 'm50': ('s7', 0.50), 'm100': ('s8', 1.00)},
             's6': {'m25': ('s7', 0.25), 'm50': ('s8', 0.50), 'm100': ('s8', 1.00)},
             's7': {'m25': ('s8', 0.25), 'm50': ('s8', 0.50), 'm100': ('s8', 1.00)},
-            's8': {}  # No estado s8, apenas retirar refrigerante
+            's8': {}  
         }
-
-        # Verifica se a moeda é válida no estado atual
         if moeda in transicoes[self.estado]:
             novo_estado, valor_moeda = transicoes[self.estado][moeda]
             self.estado = novo_estado
@@ -39,7 +36,7 @@ class MaquinaDeVendas:
             return f"Refrigerante entregue! Troco: R${self.troco:.2f}"
         else:
             return "Saldo insuficiente! Insira mais moedas."
-# Interface gráfica
+
 class Interface:
     def __init__(self, root, maquina, background_image):
         self.root = root
@@ -83,7 +80,7 @@ class Interface:
         self.saldo_label.config(text=f"Saldo: R${self.maquina.saldo:.2f}")
         messagebox.showinfo("Resultado", resultado)
 
-# Inicializar a aplicação
+
 if __name__ == "__main__":
     root = tk.Tk()
     background_image = Image.open("Maquina de Vendas\Maquina De VENDAS\maquinaDeVendas.jpg")
