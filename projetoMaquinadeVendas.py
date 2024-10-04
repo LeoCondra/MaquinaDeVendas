@@ -86,7 +86,7 @@ class Interface:
 # Inicializar a aplicação
 if __name__ == "__main__":
     root = tk.Tk()
-    background_image = Image.open("maquinaDeVendas.jpg")  # Caminho correto da imagem
+    background_image = Image.open("Maquina de Vendas\Maquina De VENDAS\maquinaDeVendas.jpg")
     maquina = MaquinaDeVendas()
     app = Interface(root, maquina, background_image)
     root.mainloop()
